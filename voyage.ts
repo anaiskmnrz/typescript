@@ -1,15 +1,14 @@
 class Sejour {
 
-    constructor(private nom:string, private prix:number){
-
+    constructor(private _nom:string, private _prix:number){
     }
 
-     public getNom(): string {
-        return this.nom;
+    public get nom(): string {
+        return this._nom;
     }
 
-    public getPrix(): number{
-        return this.prix;
+    public get prix(): number{
+        return this._prix;
     }
 
 }
@@ -23,17 +22,28 @@ class SejourService {
     }
 
     public getSejourParNom(nom:string) :Sejour|void{
-        for (let sejour of this._sejourService){
-            if (sejour.getNom() === nom) {
+        for (const sejour of this._sejourService){
+            if (sejour.nom === nom) {
                 return sejour;
             }
         }
-        console.log("\nle séjour demandé n'existe pas");
     }
 }
 
-let sejour = new SejourService();
-console.log(sejour.getSejourParNom('Bali'));
+const sejour = new SejourService();
+const sejourRecup1  = sejour.getSejourParNom('Bali');
 
-console.log(sejour.getSejourParNom('Tunisie'));
+if (sejourRecup1 === undefined){
+    console.log("\nle séjour demandé n'existe pas");
+} else {
+    console.log(sejourRecup1);
+}
+
+const sejourRecup2  = sejour.getSejourParNom('Tunisie');
+
+if (sejourRecup2 === undefined){
+    console.log("\nle séjour demandé n'existe pas");
+} else {
+    console.log(sejourRecup2);
+}
 
