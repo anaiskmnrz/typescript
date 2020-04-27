@@ -1,8 +1,7 @@
 import readline from 'readline';
+import Service from './service'
 
-const Service = require('./service.js');
 const service = new Service();
-
 
 const rl = readline.createInterface({   
 	input: process.stdin,   
@@ -15,7 +14,7 @@ export default class Presentation {
 
 		console.log('\n1. Lister les clients \n2. Ajouter un client\n99. Sortir\n');
 		rl.question('Quelle option choisissez-vous ? : ', saisie => {
-			if (Number(saisie) === 1){
+			if (saisie === '1'){
 				
 				console.log(">> Lister clients\n ");
 				service.listerClients(0,10)
@@ -25,7 +24,7 @@ export default class Presentation {
 						})
 						.catch(err => console.log('Erreur : ',err));
 			}
-			else if (Number(saisie) === 2){
+			else if (saisie === '2'){
 				console.log(">> Ajouter un client\n");
 				rl.question('Entrer le nom : ', saisieNom => {
 
@@ -39,7 +38,7 @@ export default class Presentation {
 					})
 				})
 			}
-			else if (Number(saisie) === 99) {
+			else if (saisie === '99') {
 				console.log('Au revoir')
 				rl.close();
 			}

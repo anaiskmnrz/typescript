@@ -1,9 +1,10 @@
 
 import request, {RequestPromise} from 'request-promise-native';
+import { Client } from './domain';
 
 export default class Service{
 
-	listerClients(start:number, size:number){
+	listerClients(start:number, size:number) :Promise<Client[]>{
 
 		return new Promise( (resolve, reject) => {
 			request('http://localhost:8080/clients?start='+start+'&size='+size, { json:true}, (err,res,body) => {
@@ -16,7 +17,7 @@ export default class Service{
 		})
 	}
 
-	ajouterClient(saisieNom:string, saisiePrenom:string) {
+	ajouterClient(saisieNom:string, saisiePrenom:string): Promise<Client> {
 
 		return new Promise( (resolve, reject) => {
 			request('http://localhost:8080/clients', { json: true, method: 'POST',
